@@ -1,6 +1,7 @@
 package com.sigabem.service.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -10,7 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Schema(name = "FreteRequisicaoDTO", description = "Requisição de entrada")
 public class FreteRequisicaoDTO {
 
-	@NotBlank(message = "O valor do peso é obrigatorio!")
+	@NotNull
 	@Schema(name = "peso", description = " Peso da carga", required = true)
 	private Double peso;
 

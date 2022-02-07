@@ -5,8 +5,10 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.sigabem.model.SigaBemModel;
 import com.sigabem.repository.SigaBemRepository;
@@ -29,15 +31,21 @@ public class SigaBemServiceImpl implements SigaBemService {
 	@Value("${app.sigabem.valor.kilo}")
 	private Double valorKilo;
 	
+	
+	
 	@Override
 	@Transactional
 	public FreteRespostaDTO calcularFrete(FreteRequisicaoDTO freteRequisicaoDTO) {
 
 		// Obtendo o CEP Origem
 		ViaCepDTO cepOrigem = viaCepService.buscarCep( freteRequisicaoDTO.getCepOrigem());
-
+		
+		if (cepOrigem.getDdd() == null)  throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CEP inexistente");
+		
 		// Obtendo o CEP Destino
 		ViaCepDTO cepDestino = viaCepService.buscarCep( freteRequisicaoDTO.getCepDestino());
+		
+		if (cepDestino.getDdd() == null)  throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CEP inexistente");
 		
 		Double valorFreteCalculado = freteRequisicaoDTO.getPeso() * valorKilo;
 		Long diasEntrega = 10L;

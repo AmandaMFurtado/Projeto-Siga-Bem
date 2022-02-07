@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "FreteRespostaDTOO")
-@Schema(name = "FFreteRespostaDTO", description = "Resposta de saída")
+@Schema(name = "FreteRespostaDTO", description = "Resposta de saída")
 public class FreteRespostaDTO {
 
 	@Schema(name = "vlTotalFrete", description = "Valor total do frete", required = true)
