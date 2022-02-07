@@ -40,12 +40,12 @@ public class SigaBemServiceImpl implements SigaBemService {
 		// Obtendo o CEP Origem
 		ViaCepDTO cepOrigem = viaCepService.buscarCep( freteRequisicaoDTO.getCepOrigem());
 		
-		if (cepOrigem.getDdd() == null)  throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CEP inexistente");
+		if (cepOrigem.getDdd() == null)  throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CEP de origem inexistente");
 		
 		// Obtendo o CEP Destino
 		ViaCepDTO cepDestino = viaCepService.buscarCep( freteRequisicaoDTO.getCepDestino());
 		
-		if (cepDestino.getDdd() == null)  throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CEP inexistente");
+		if (cepDestino.getDdd() == null)  throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CEP de destino inexistente");
 		
 		Double valorFreteCalculado = freteRequisicaoDTO.getPeso() * valorKilo;
 		Long diasEntrega = 10L;
