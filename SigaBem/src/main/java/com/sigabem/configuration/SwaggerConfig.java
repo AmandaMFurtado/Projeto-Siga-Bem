@@ -12,9 +12,17 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 
+/**
+ * Configuração para o Swagger/OpenAPI.
+ */
 @Configuration
 public class SwaggerConfig {
 
+	/**
+	 * Configura e retorna as informações gerais da documentação do Swagger/OpenAPI.
+	 *
+	 * @return Instância de OpenAPI configurada com informações gerais.
+	 */
 	@Bean
 	public OpenAPI springBlogPessoalOpenAPI() {
 		return new OpenAPI()
@@ -34,6 +42,11 @@ public class SwaggerConfig {
 					.url("https://github.com/AmandaMFurtado/Projeto-SigaBem"));
 	}
 
+	/**
+	 * Cria um customizador global para adicionar respostas de API com mensagens padrão.
+	 *
+	 * @return Instância de OpenApiCustomiser configurada para adicionar respostas de API.
+	 */
 	@Bean
 	public OpenApiCustomiser customerGlobalHeaderOpenApiCustomiser() {
 
@@ -54,7 +67,14 @@ public class SwaggerConfig {
 		};
 	}
 
+	/**
+	 * Cria e retorna uma instância de ApiResponse com a descrição fornecida.
+	 *
+	 * @param message Descrição da resposta de API.
+	 * @return Instância de ApiResponse configurada com a descrição fornecida.
+	 */
 	private ApiResponse createApiResponse(String message) {
+
 		return new ApiResponse().description(message);
 	}
 }

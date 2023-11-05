@@ -12,6 +12,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+/**
+ * Classe que representa o modelo de dados para informações de frete no projeto Siga Bem.
+ */
 @Entity
 @Table(name = "tb_sigabem")
 public class SigaBemModel {	
@@ -42,71 +45,149 @@ public class SigaBemModel {
 		@UpdateTimestamp
 		private LocalDateTime dataConsulta;
 
-		public Long getId() {
-			return id;
-		}
+	/**
+	 * Obtém o ID do registro.
+	 *
+	 * @return O ID do registro.
+	 */
+	public Long getId() {
+		return id;
+	}
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+	/**
+	 * Define o ID do registro.
+	 *
+	 * @param id O ID do registro.
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-		public Double getPeso() {
-			return peso;
-		}
+	/**
+	 * Obtém o peso do frete.
+	 *
+	 * @return O peso do frete.
+	 */
+	public Double getPeso() {
+		return peso;
+	}
 
-		public void setPeso(Double peso) {
-			this.peso = peso;
-		}
+	/**
+	 * Define o peso do frete.
+	 *
+	 * @param peso O peso do frete.
+	 */
+	public void setPeso(Double peso) {
+		this.peso = peso;
+	}
 
-		public String getCepOrigem() {
-			return cepOrigem;
-		}
+	/**
+	 * Obtém o CEP de origem.
+	 *
+	 * @return O CEP de origem.
+	 */
+	public String getCepOrigem() {
+		return cepOrigem;
+	}
 
-		public void setCepOrigem(String cepOrigem) {
-			this.cepOrigem = cepOrigem;
-		}
+	/**
+	 * Define o CEP de origem.
+	 *
+	 * @param cepOrigem O CEP de origem.
+	 */
+	public void setCepOrigem(String cepOrigem) {
+		this.cepOrigem = cepOrigem;
+	}
 
-		public String getCepDestino() {
-			return cepDestino;
-		}
+	/**
+	 * Obtém o CEP de destino.
+	 *
+	 * @return O CEP de destino.
+	 */
+	public String getCepDestino() {
+		return cepDestino;
+	}
 
-		public void setCepDestino(String cepDestino) {
-			this.cepDestino = cepDestino;
-		}
+	/**
+	 * Define o CEP de destino.
+	 *
+	 * @param cepDestino O CEP de destino.
+	 */
+	public void setCepDestino(String cepDestino) {
+		this.cepDestino = cepDestino;
+	}
 
-		public String getNomeDestinatario() {
-			return nomeDestinatario;
-		}
+	/**
+	 * Obtém o nome do destinatário.
+	 *
+	 * @return O nome do destinatário.
+	 */
+	public String getNomeDestinatario() {
+		return nomeDestinatario;
+	}
 
-		public void setNomeDestinatario(String nomeDestinatario) {
-			this.nomeDestinatario = nomeDestinatario;
-		}
+	/**
+	 * Define o nome do destinatário.
+	 *
+	 * @param nomeDestinatario O nome do destinatário.
+	 */
+	public void setNomeDestinatario(String nomeDestinatario) {
+		this.nomeDestinatario = nomeDestinatario;
+	}
 
-		public Double getVlTotalFrete() {
-			return vlTotalFrete;
-		}
+	/**
+	 * Obtém o valor total do frete.
+	 *
+	 * @return O valor total do frete.
+	 */
+	public Double getVlTotalFrete() {
+		return vlTotalFrete;
+	}
 
-		public void setVlTotalFrete(Double vlTotalFrete) {
-			this.vlTotalFrete = vlTotalFrete;
-		}
+	/**
+	 * Define o valor total do frete.
+	 *
+	 * @param vlTotalFrete O valor total do frete.
+	 */
+	public void setVlTotalFrete(Double vlTotalFrete) {
+		this.vlTotalFrete = vlTotalFrete;
+	}
 
-		public LocalDate getDataPrevistaEntrega() {
-			return dataPrevistaEntrega;
-		}
+	/**
+	 * Obtém a data prevista de entrega.
+	 *
+	 * @return A data prevista de entrega.
+	 */
+	public LocalDate getDataPrevistaEntrega() {
+		return dataPrevistaEntrega;
+	}
 
-		public void setDataPrevistaEntrega(LocalDate dataPrevistaEntrega) {
-			this.dataPrevistaEntrega = dataPrevistaEntrega;
-		}
+	/**
+	 * Define a data prevista de entrega.
+	 *
+	 * @param dataPrevistaEntrega A data prevista de entrega.
+	 */
+	public void setDataPrevistaEntrega(LocalDate dataPrevistaEntrega) {
+		this.dataPrevistaEntrega = dataPrevistaEntrega;
+	}
 
-		public LocalDateTime getDataConsulta() {
-			return dataConsulta;
-		}
+	/**
+	 * Obtém a data da consulta.
+	 *
+	 * @return A data da consulta.
+	 */
+	public LocalDateTime getDataConsulta() {
+		return dataConsulta;
+	}
 
-		public void setDataConsulta(LocalDateTime dataConsulta) {
-			this.dataConsulta = dataConsulta;
-		}
-
-		
+	/**
+	 * Define a data da consulta.
+	 *
+	 * @param dataConsulta A data da consulta.
+	 */
+	public void setDataConsulta(LocalDateTime dataConsulta) {
+		this.dataConsulta = dataConsulta;
+	}
 }
 
 

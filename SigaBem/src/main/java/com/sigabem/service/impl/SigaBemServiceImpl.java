@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.sigabem.model.SigaBemModel;
@@ -18,6 +19,9 @@ import com.sigabem.service.dto.FreteRespostaDTO;
 import com.sigabem.service.dto.ViaCepDTO;
 import com.sigabem.service.feign.ViaCepService;
 
+/**
+ * Implementação do serviço SigaBem para cálculo de frete.
+ */
 @Service
 public class SigaBemServiceImpl implements SigaBemService {
 
@@ -30,21 +34,26 @@ public class SigaBemServiceImpl implements SigaBemService {
 	
 	@Value("${app.sigabem.valor.kilo}")
 	private Double valorKilo;
-	
-	
-	
+
+
+	/**
+	 * Calcula o valor do frete com base nas informações de requisição.
+	 *
+	 * @param freteRequisicaoDTO O DTO contendo as informações de requisição.
+	 * @return Um DTO com as informações do frete calculado.
+	 */
 	@Override
 	@Transactional
 	public FreteRespostaDTO calcularFrete(FreteRequisicaoDTO freteRequisicaoDTO) {
 
 		// Obtendo o CEP Origem
 		ViaCepDTO cepOrigem = viaCepService.buscarCep( freteRequisicaoDTO.getCepOrigem());
-		
+
 		if (cepOrigem.getDdd() == null)  throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CEP de origem inexistente");
 		
 		// Obtendo o CEP Destino
 		ViaCepDTO cepDestino = viaCepService.buscarCep( freteRequisicaoDTO.getCepDestino());
-		
+
 		if (cepDestino.getDdd() == null)  throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CEP de destino inexistente");
 		
 		Double valorFreteCalculado = freteRequisicaoDTO.getPeso() * valorKilo;
@@ -74,7 +83,21 @@ public class SigaBemServiceImpl implements SigaBemService {
 		return freteRespostaDTO;
 		
 	}
-	
+
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public class CepOrigemNaoEncontradoException extends RuntimeException {
+		public CepOrigemNaoEncontradoException() {
+			super("CEP de origem inexistente");
+		}
+	}
+
+
+	/**
+	 * Grava o cálculo do frete no banco de dados.
+	 *
+	 * @param freteRequisicaoDTO O DTO contendo as informações de requisição.
+	 * @param freteRespostaDTO O DTO contendo as informações do frete calculado.
+	 */
 	private void gravarCaluloFrete( FreteRequisicaoDTO freteRequisicaoDTO , FreteRespostaDTO freteRespostaDTO ) {
 		SigaBemModel sigaBemModel = new SigaBemModel();
 		sigaBemModel.setCepDestino( freteRespostaDTO.getCepDestino() );
